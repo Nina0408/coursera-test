@@ -33,11 +33,13 @@
         url: APIBasePath + '/menu_items.json'
       }).then(function(result) {
         var foundItems1 = [];
-        var menuItems = result.data.menu_items;
-        var length = menuItems.length;
-        for (var i = 0; i < length; i++) {
-          if (menuItems[i].description.indexOf(searchTerm) != -1) {
-            foundItems1.push(menuItems[i]);
+        if(searchTerm != null && searchTerm != undefined && searchTerm.trim().length != 0) {
+          var menuItems = result.data.menu_items;
+          var length = menuItems.length;
+          for (var i = 0; i < length; i++) {
+            if (menuItems[i].description.indexOf(searchTerm) != -1) {
+              foundItems1.push(menuItems[i]);
+            }
           }
         }
         return foundItems1;
@@ -52,6 +54,7 @@
         foundList: '<',
         onRemove:'&'
       }
+
     };
     return DDO;
   }
